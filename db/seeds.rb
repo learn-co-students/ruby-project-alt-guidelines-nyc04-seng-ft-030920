@@ -1,5 +1,3 @@
-require_all 'app'
-
 #  Destroys all previous data
 User.destroy_all
 Restaurant.destroy_all

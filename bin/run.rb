@@ -1,4 +1,8 @@
 require_relative '../config/environment'
-
 binding.pry
-puts "hello world"
+
+interface = Interface.new()
+interface.welcome
+interface.new_or_existing
+
+puts "That's all folks!"
