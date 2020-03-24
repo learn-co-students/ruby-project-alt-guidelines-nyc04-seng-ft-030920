@@ -9,12 +9,6 @@ class User < ActiveRecord::Base
     def self.log_in
         puts "Please enter your full name: "
         name = gets.chomp
-        User.find_by(name: name)
-        Interface.user_menu
-    end
-
-    def self.create_account
-
-        # Interface.user_menu
+        User.find_or_create_by(name: name)
     end
 end

@@ -8,10 +8,12 @@ class Restaurant < ActiveRecord::Base
 
     def self.log_in
         @prompt.select("Please select your restaurant from the following: ", list_by_name)
-        Interface.restaurant_menu
     end
 
-    def self.create_account
 
+    def show_open
+        binding.pry
+        Reservation.all.where(user_id: nil && restaurant == self)
     end
+
 end
