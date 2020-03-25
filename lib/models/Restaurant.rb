@@ -11,7 +11,7 @@ class Restaurant < ActiveRecord::Base
     # ^^^ needs to be a restaurant instance
     end
 
-    def show_open
+    def open
         Reservation.all.where(user_id: nil && restaurant == self)
     end
 

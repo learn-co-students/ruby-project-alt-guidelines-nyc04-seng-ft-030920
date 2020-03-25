@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
     def book
         # Needs to display reservation instances properly ----------------vvv
-        reservation = @@prompt.select("Where would you like to dine?", Reservation.show_open)
+        reservation = @@prompt.select("Where would you like to dine?", Reservation.open)
         reservation.user = self
         reservation
     end
