@@ -12,7 +12,7 @@ class Interface
     end
 
     def user_or_restaurant
-        answer =  prompt.select("Are you a Restaurant or User?") do |menu|
+        answer =  prompt.select("Are you a User or Restaurant?") do |menu|
             menu.choice "User"
             menu.choice "Restaurant"
         end

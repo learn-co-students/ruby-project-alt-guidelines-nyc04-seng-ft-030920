@@ -11,10 +11,4 @@ class Reservation < ActiveRecord::Base
         end
         # Need this to diplay restaurant name and table size but in reality select a Reservation instance
     end
-
-    def self.book(user)
-        reservation = @prompt.select("Where would you like to dine?", show_open)
-        reservation.user = user
-        reservation
-    end
 end

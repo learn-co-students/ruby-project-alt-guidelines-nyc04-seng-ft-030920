@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-    @prompt = TTY::Prompt.new
+    @@prompt = TTY::Prompt.new
     has_many :reservations
 
     def self.list_by_name
@@ -18,13 +18,13 @@ class User < ActiveRecord::Base
     end
 
     def book
-        reservation = @prompt.select("Where would you like to dine?", Reservation.show_open)
+        # Needs to display reservation instances properly ----------------vvv
+        reservation = @@prompt.select("Where would you like to dine?", Reservation.show_open)
         reservation.user = self
         reservation
     end
 
     def find_resos
-        # binding.pry
         resos = Reservation.all.where(user: self)
         if resos[0]
             puts "\nYour reservation(s):\n#{resos}"

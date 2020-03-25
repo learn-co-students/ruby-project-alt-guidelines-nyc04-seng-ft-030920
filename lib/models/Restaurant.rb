@@ -12,7 +12,6 @@ class Restaurant < ActiveRecord::Base
     end
 
     def show_open
-        binding.pry
         Reservation.all.where(user_id: nil && restaurant == self)
     end
 
