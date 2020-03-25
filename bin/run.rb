@@ -13,4 +13,4 @@ elsif type == "Restaurant"
     interface.restaurant_menu(rest_inst)
 end
 
-puts "That's all folks!"
+puts "\n\n\n#---------Thanks For Using FreeTable---------#"

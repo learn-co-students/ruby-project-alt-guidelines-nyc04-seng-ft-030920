@@ -21,18 +21,18 @@ class Interface
     def user_menu(user)
         prompt.select("") do |q|
             q.choice 'Make a Reservation', -> {user.book}
-            q.choice 'View an Existing Reservation', -> {user.find_resos}
+            q.choice 'View Existing Reservations', -> {user.find_resos}
             q.choice 'Cancel a Reservation', -> {user.cancel_reso}
-            q.choice 'Change a Reservation', -> {user.change_reso}
         end
     end
 
     def restaurant_menu(restaurant)
         prompt.select("") do |q|
             q.choice 'Check Reserved Tables', -> {restaurant.reserved}
-            q.choice 'Show Open Tables', -> {restaurant.show_open}
-            q.choice 'Delete Listing', -> {restaurant.delete}
-            q.choice 'Change Listing', -> {restaurant.change}
+            q.choice 'Show Open Tables', -> {restaurant.open}
+            q.choice 'Cancel a Users Reservation', -> {restaurant.delete_booked_reso}
+            q.choice 'Cancel an Open Reservation', -> {restaurant.delete_open_reso}
+            q.choice 'Create Listing', -> {restaurant.create}
         end
     end
 end
