@@ -1,7 +1,7 @@
   
 require_relative '../config/environment'
 
-
+# binding.pry
 interface = Interface.new()
 interface.welcome
 type = interface.user_or_restaurant
@@ -10,7 +10,6 @@ if type == "User"
     interface.user_menu(user_inst)
 elsif type == "Restaurant"
     rest_inst = Restaurant.log_in
-    binding.pry
     interface.restaurant_menu(rest_inst)
 end
 
