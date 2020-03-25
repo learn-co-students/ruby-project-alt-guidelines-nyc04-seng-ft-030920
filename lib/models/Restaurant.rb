@@ -79,4 +79,21 @@ class Restaurant < ActiveRecord::Base
         puts "\nCreating listing for table of #{created.table_size} at #{created.datetime}."
         puts "*** Your reservation listing has been created ***"
     end
+
+    def update
+        resos = Reservation.all.where(restaurant: self, user_id: nil)
+        if resos.length > 0
+            reso_chosen = @@prompt.select("Which listing would you like to update?") do |q|
+                resos.each do |reso|
+                    q.choice Restaurant.print_reso(reso), -> {reso}
+                end
+            end
+            puts "What would you like to change the table size to?"
+            table_size = gets.chomp
+            reso_chosen.update(table_size: table_size)
+            puts "*** Reservation Updated ***"
+        else
+            puts "There are no open reservations to update."
+        end
+    end
 end

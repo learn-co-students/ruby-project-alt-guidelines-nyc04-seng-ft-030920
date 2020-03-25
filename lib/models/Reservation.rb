@@ -12,4 +12,9 @@ class Reservation < ActiveRecord::Base
     def self.closed
         Reservation.all.where(user_id: !nil)
     end
+
+    def self.done
+        puts "\n\n\n#---------Thanks For Using FreeTable---------#"
+        exit
+    end
 end
