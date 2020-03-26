@@ -48,7 +48,6 @@ class Restaurant < ActiveRecord::Base
     end
 
     def reserved
-        # resos = Reservation.where(restaurant: self , user_id: (1..100) )
        resos = Reservation.where.not(user_id: nil ).where(restaurant: self)
         if resos.length > 0
             resos.sort_by(&:datetime).each do |reso| 
@@ -98,7 +97,7 @@ class Restaurant < ActiveRecord::Base
     def create
         puts "What is the table size?"  
         table_size = gets.chomp
-        puts "What time would you like to create an open reservation for?"
+        puts "What time would you like to create an open reservation for? (MM/DD/YYYY HH:MM)"
         datetime = gets.chomp 
         created = Reservation.create!(restaurant: self, table_size: table_size, datetime: DateTime.strptime(datetime, "%m/%d/%y %H:%M"))
         puts "\nCreating listing for table of #{created.table_size} at #{created.datetime}........"
