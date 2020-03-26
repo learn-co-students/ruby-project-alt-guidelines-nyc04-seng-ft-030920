@@ -20,17 +20,21 @@ class User < ActiveRecord::Base
 
     def book
         if Reservation.open.length > 0
-            reservation = @@prompt.select("Where would you like to dine?") do |q|
-                Reservation.open.each do |reso|
-                    q.choice User.print_reso(reso), -> {reso}
-                end
-            end
-            reservation.user = self
-            reservation.save
-            puts "\n*** #{self.name}, I've booked your reservation ***".colorize(:color => :green)
+            self.make_booking
         else
             puts "There Are No Open Reservation Listings".colorize(:color => :red)
         end
+    end
+
+    def make_booking
+        reservation = @@prompt.select("Where would you like to dine?") do |q|
+            Reservation.open.each do |reso|
+                q.choice User.print_reso(reso), -> {reso}
+            end
+        end
+        reservation.user = self
+        reservation.save
+        puts "\n*** #{self.name}, I've booked your reservation ***".colorize(:color => :green)
     end
 
     def find_resos
