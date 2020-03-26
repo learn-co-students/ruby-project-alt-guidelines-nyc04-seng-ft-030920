@@ -38,7 +38,9 @@ class Interface
             q.choice 'Cancel an Open Reservation', -> {restaurant.delete_open_reso}
             q.choice 'Create Listing', -> {restaurant.create}
             q.choice 'Update Open Listing', -> {restaurant.update}
+            q.choice 'Change Password', -> {restaurant.change_password}
             q.choice 'Done', -> {Reservation.done}
+
         end
         (sleep 5)
         puts `clear`

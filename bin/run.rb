@@ -1,6 +1,6 @@
   
 require_relative '../config/environment'
-puts 'clear'
+puts `clear`
 # binding.pry
 ASCII.asc
 (sleep 2)

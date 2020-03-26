@@ -4,11 +4,36 @@ class Restaurant < ActiveRecord::Base
     has_many :reservations
 
     def self.log_in
-       @@prompt.select("Please select your restaurant from the following: ") do |q|
+       restaurant = @@prompt.select("Please select your restaurant from the following: ") do |q|
             Restaurant.all.each do |restaurant|
                q.choice restaurant.name, -> {restaurant}
             end
         end 
+        self.verify(restaurant)
+        return restaurant
+    end
+
+    def self.verify(restaurant)
+        input = @@prompt.mask("Please Enter Your Password:")
+        if restaurant.password == input
+            puts "Verified".colorize(:color => :green)
+        else
+            puts "ERROR: Incorrect Password".colorize(:color => :red)
+            verify(restaurant)
+        end
+    end
+
+    def change_password
+        input = @@prompt.mask("Please Enter Your New Password:")
+        input2 = @@prompt.mask("Re-enter The Same Password:")
+        if input != input2
+            puts "ERROR: Password Mismatch. Try Again".colorize(:color => :red)
+            self.change_password
+        else
+            binding.pry
+            self.update(password: input)
+            puts "***Password Reset***".colorize(:color => :green)
+        end
     end
 
     def open

@@ -7,7 +7,7 @@ Reservation.destroy_all
 10.times{User.create(name: Faker::Name.unique.name)}
 
 # Generates Restaurants
-10.times{Restaurant.create(name: Faker::Restaurant.name)}
+10.times{Restaurant.create(name: Faker::Restaurant.name, password: "food")}
 # Note- we can later user Faker::Restaurant.type to search by restaurant type
 
 # Generates taken Reservations up to 23 days in the future
