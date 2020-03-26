@@ -48,7 +48,8 @@ class Restaurant < ActiveRecord::Base
     end
 
     def reserved
-        resos = Reservation.where(restaurant: self , user_id: (1..100) )
+        # resos = Reservation.where(restaurant: self , user_id: (1..100) )
+       resos = Reservation.where.not(user_id: nil ).where(restaurant: self)
         if resos.length > 0
             resos.sort_by(&:datetime).each do |reso| 
                 puts self.class.print_reso(reso)
