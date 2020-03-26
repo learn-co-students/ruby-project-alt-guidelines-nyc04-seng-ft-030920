@@ -13,13 +13,13 @@ Reservation.destroy_all
 # Generates taken Reservations up to 23 days in the future
 10.times do
     rand_datetime = Faker::Time.forward(days: 23 , period: :evening)
-    Reservation.create(restaurant_id: rand(10) + 1 , user_id: rand(10) + 1 , table_size: rand(8) + 1, datetime: Time.at(rand_datetime).strftime("%B %e, %Y at %I:%M %p"))
+    Reservation.create(restaurant_id: rand(10) + 1 , user_id: rand(10) + 1 , table_size: rand(8) + 1, datetime: rand_datetime)
 end
 
 # Generates open Reservations up to 23 days in the future
 10.times do
     rand_datetime = Faker::Time.forward(days: 23 , period: :evening)
-    Reservation.create(restaurant_id: rand(10) + 1 , user_id: nil , table_size: rand(8) + 1, datetime: Time.at(rand_datetime).strftime("%B %e, %Y at %I:%M %p"))
+    Reservation.create(restaurant_id: rand(10) + 1 , user_id: nil , table_size: rand(8) + 1, datetime: rand_datetime)
 end
 
 puts "Seed data initialized!"
