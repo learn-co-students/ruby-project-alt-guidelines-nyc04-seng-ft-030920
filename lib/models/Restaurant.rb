@@ -67,10 +67,6 @@ class Restaurant < ActiveRecord::Base
     end
 
     def delete_booked_reso
-        # resos = Reservation.all.where(restaurant: self , user_id: (1..1000))
-        # select
-
-
         resos = Reservation.where.not(user_id: nil ).where(restaurant: self)
         if resos.length > 0
             @@prompt.select("Which reservation would you like to cancel?") do |q|
