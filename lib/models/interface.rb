@@ -3,11 +3,11 @@ class Interface
     attr_accessor :prompt, :user
 
     def initialize
-        @prompt = TTY::Prompt.new
+        @prompt = TTY::Prompt.new(active_color: :blue)
     end
 
     def welcome
-        puts "\nWelcome to FreeTable! 🍽"
+        puts "\nWelcome to FreeTable! 🍽".colorize(:color => :blue)
         puts "\n---------------------\n"
     end
 
@@ -41,5 +41,3 @@ class Interface
         restaurant_menu(restaurant)
     end
 end
-
-# Make an option to return back to respective main menus
