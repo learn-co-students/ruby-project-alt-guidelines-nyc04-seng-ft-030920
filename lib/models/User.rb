@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
     def make_booking
         reservation = @@prompt.select("Where would you like to dine?") do |q|
-            Reservation.open.each do |reso|
+            Reservation.open.sort_by(&:datetime).each do |reso|
                 q.choice User.print_reso(reso), -> {reso}
             end
         end
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
         resos = Reservation.all.where(user: self)
         if resos.length > 0
             puts "\nYour reservation(s):\n"
-            resos.each do |reso|
+            resos.sort_by(&:datetime).each do |reso|
                 puts User.print_reso(reso)
             end
         else
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
         # if user is the last added in db, dont run
         if Reservation.all.where(user: self).length > 0
             reso = @@prompt.select("Which reservation would you like to cancel?") do |q|
-                Reservation.all.where(user: self).each do |reso|
+                Reservation.all.where(user: self).sort_by(&:datetime).each do |reso|
                     q.choice User.print_reso(reso), -> {reso}
                 end
             end

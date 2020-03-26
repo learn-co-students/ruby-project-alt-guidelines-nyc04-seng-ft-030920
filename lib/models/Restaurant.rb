@@ -39,7 +39,7 @@ class Restaurant < ActiveRecord::Base
         resos = Reservation.where(restaurant: self, user_id: nil)
         if resos.length > 0
             puts "The following have not yet been reserved:\n\n"
-            resos.each do |reso| 
+            resos.sort_by(&:datetime).each do |reso| 
                 puts "#{reso.datetime} - Table of #{reso.table_size}"
             end
         else
@@ -50,7 +50,7 @@ class Restaurant < ActiveRecord::Base
     def reserved
         resos = Reservation.where(restaurant: self , user_id: (1..100) )
         if resos.length > 0
-            resos.each do |reso| 
+            resos.sort_by(&:datetime).each do |reso| 
                 puts self.class.print_reso(reso)
             end
         else
@@ -71,7 +71,7 @@ class Restaurant < ActiveRecord::Base
         # select
         if resos.length > 0
             @@prompt.select("Which reservation would you like to cancel?") do |q|
-                resos.each do |reso|
+                resos.sort_by(&:datetime).each do |reso|
                     q.choice Restaurant.print_reso(reso), -> {reso}
                 end
             end.destroy
@@ -85,7 +85,7 @@ class Restaurant < ActiveRecord::Base
         resos = Reservation.all.where(restaurant: self, user_id: nil)
         if resos.length > 0
             @@prompt.select("Which reservation would you like to cancel?") do |q|
-                resos.each do |reso|
+                resos.sort_by(&:datetime).each do |reso|
                     q.choice Restaurant.print_reso(reso), -> {reso}
                 end
             end.destroy
@@ -108,7 +108,7 @@ class Restaurant < ActiveRecord::Base
         resos = Reservation.all.where(restaurant: self, user_id: nil)
         if resos.length > 0
             reso_chosen = @@prompt.select("Which listing would you like to update?") do |q|
-                resos.each do |reso|
+                resos.sort_by(&:datetime).each do |reso|
                     q.choice Restaurant.print_reso(reso), -> {reso}
                 end
             end

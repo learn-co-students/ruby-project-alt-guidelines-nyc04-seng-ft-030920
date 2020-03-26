@@ -6,11 +6,11 @@ class Reservation < ActiveRecord::Base
     @prompt = TTY::Prompt.new(active_color: :blue)
 
     def self.open
-        Reservation.all.where(user_id: nil)
+        Reservation.all.where(user_id: nil).sort_by(&:datetime)
     end
 
     def self.closed
-        Reservation.all.where(user_id: (1..1000))
+        Reservation.all.where(user_id: (1..1000)).sort_by(&:datetime)
     end
 
     def self.done
