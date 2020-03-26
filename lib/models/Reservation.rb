@@ -10,7 +10,7 @@ class Reservation < ActiveRecord::Base
     end
 
     def self.closed
-        Reservation.all.where(user_id: (1..1000)).sort_by(&:datetime)
+        Reservation.all.where.not(user_id: nil).sort_by(&:datetime)
     end
 
     def self.done
