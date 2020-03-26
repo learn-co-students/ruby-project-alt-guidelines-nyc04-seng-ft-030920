@@ -25,6 +25,8 @@ class Interface
             q.choice 'Cancel a Reservation', -> {user.cancel_reso}
             q.choice 'Done', -> {Reservation.done}
         end
+        (sleep 5)
+        puts `clear`
         user_menu(user)
     end
 
@@ -38,6 +40,8 @@ class Interface
             q.choice 'Update Open Listing', -> {restaurant.update}
             q.choice 'Done', -> {Reservation.done}
         end
+        (sleep 5)
+        puts `clear`
         restaurant_menu(restaurant)
     end
 end
