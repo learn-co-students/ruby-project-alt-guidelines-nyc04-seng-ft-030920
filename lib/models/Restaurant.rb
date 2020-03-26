@@ -30,8 +30,7 @@ class Restaurant < ActiveRecord::Base
             puts "ERROR: Password Mismatch. Try Again".colorize(:color => :red)
             self.change_password
         else
-            binding.pry
-            self.update(password: input)
+            self.update_column(:password, input)
             puts "***Password Reset***".colorize(:color => :green)
         end
     end
