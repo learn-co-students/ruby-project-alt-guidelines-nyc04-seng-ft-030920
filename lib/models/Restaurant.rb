@@ -97,7 +97,7 @@ class Restaurant < ActiveRecord::Base
     def create
         puts "What is the table size?"  
         table_size = gets.chomp
-        puts "What time would you like to create an open reservation for? (MM/DD/YY HH:MM)"
+        puts "What time would you like to create an open reservation for? (Month DD,YYYY HH:MM)"
         input = gets.chomp 
         created = Reservation.create!(restaurant: self, table_size: table_size, datetime: DateTime.strptime(input, "%m/%d/%y %H:%M"))
         puts "\nCreating listing for table of #{created.table_size} at #{created.datetime}........"

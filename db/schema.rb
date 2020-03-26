@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer "restaurant_id"
     t.integer "user_id"
     t.integer "table_size"
-    t.datetime "datetime"
+    t.string "datetime"
   end
 
   create_table "restaurants", force: :cascade do |t|
