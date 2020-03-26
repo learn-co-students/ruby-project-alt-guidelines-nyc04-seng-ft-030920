@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
                     q.choice User.print_reso(reso), -> {reso}
                 end
             end
-            reso.destroy
+            reso.update(user_id: nil)
             puts "\n*** Your Reservation Has Been Canceled ***".colorize(:color => :green)
         else puts "You Don't Have Any Reservations to Cancel.".colorize(:color => :red)
         end
