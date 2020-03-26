@@ -27,6 +27,7 @@ class Interface
         end
         (sleep 5)
         puts `clear`
+        puts "What else would you like to do?"
         user_menu(user)
     end
 
@@ -44,6 +45,7 @@ class Interface
         end
         (sleep 5)
         puts `clear`
+        puts "What else would you like to do?"
         restaurant_menu(restaurant)
     end
 end
