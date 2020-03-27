@@ -99,7 +99,7 @@ class Restaurant < ActiveRecord::Base
         table_size = gets.chomp
         puts "What time would you like to create an open reservation for? (Month DD,YYYY HH:MM)"
         input = gets.chomp 
-        created = Reservation.create!(restaurant: self, table_size: table_size, datetime: DateTime.strptime(input, "%m/%d/%y %H:%M"))
+        created = Reservation.create!(restaurant: self, table_size: table_size, datetime: input)
         puts "\nCreating listing for table of #{created.table_size} at #{created.datetime}........"
         puts "*** Your reservation listing has been created ***".colorize(:color => :green)
     end
