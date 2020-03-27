@@ -1,3 +1,4 @@
+
 class Interface
 
     attr_accessor :prompt, :user
@@ -5,10 +6,34 @@ class Interface
     def initialize
         @prompt = TTY::Prompt.new(active_color: :blue)
     end
+    def whirly_beginning
+        Whirly.start do
+            Whirly.status = " Loading 🍕🍟🌮🍕🍟🌮🍕🍟🌮🍕🍟🌮"
+            sleep 1
+
+            Whirly.status = "Lets Eat"
+          
+            sleep 1
+            Whirly.stop
+        end
+          
+    end 
+
+    def whirly_wait
+        Whirly.start do
+            puts "\n"
+            Whirly.status = "Returning to Main Menu"
+            sleep 1
+        end 
+    end 
 
     def welcome
         puts "\nWelcome to FreeTable! 🍽".colorize(:color => :blue)
         puts "\n---------------------\n"
+        puts "\n"
+        self.whirly_beginning
+        puts "\n"
+    
     end
 
     def user_or_restaurant
@@ -20,12 +45,14 @@ class Interface
 
     def user_menu(user)
         prompt.select("") do |q|
-            q.choice 'Make a Reservation', -> {user.book}
+            q.choice 'Make a Reservation', -> {user.book}   
             q.choice 'View Existing Reservations', -> {user.find_resos}
             q.choice 'Cancel a Reservation', -> {user.cancel_reso}
             q.choice 'Done', -> {Reservation.done}
         end
-        (sleep 5)
+        # (sleep 5)
+       
+        self.whirly_wait
         puts `clear`
         puts "What else would you like to do?"
         user_menu(user)
@@ -43,7 +70,9 @@ class Interface
             q.choice 'Done', -> {Reservation.done}
 
         end
-        (sleep 5)
+        # (sleep 3)
+
+        self.whirly_wait
         puts `clear`
         puts "What else would you like to do?"
         restaurant_menu(restaurant)
