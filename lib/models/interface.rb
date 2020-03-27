@@ -8,11 +8,9 @@ class Interface
     end
     def whirly_beginning
         Whirly.start do
-            Whirly.status = " Loading 🍕🍟🌮🍕🍟🌮🍕🍟🌮🍕🍟🌮"
+            Whirly.status = " Loading "
             sleep 1
-
             Whirly.status = "Lets Eat"
-          
             sleep 1
             Whirly.stop
         end
@@ -23,7 +21,7 @@ class Interface
         Whirly.start do
             puts "\n"
             Whirly.status = "Returning to Main Menu"
-            sleep 1
+            sleep 1.5
         end 
     end 
 
@@ -50,7 +48,8 @@ class Interface
             q.choice 'Cancel a Reservation', -> {user.cancel_reso}
             q.choice 'Done', -> {Reservation.done}
         end
-        # (sleep 5)
+        
+       
        
         self.whirly_wait
         puts `clear`
@@ -70,8 +69,6 @@ class Interface
             q.choice 'Done', -> {Reservation.done}
 
         end
-        # (sleep 3)
-
         self.whirly_wait
         puts `clear`
         puts "What else would you like to do?"
